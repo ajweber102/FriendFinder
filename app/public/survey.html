@@ -16,11 +16,11 @@
         <div class="jumbotron">
             <h1 class="text-center"><i class="fa fa-female"></i> Friend Finder <i class="fa fa-male"></i></h1>
             <hr>
-            <h2 id="jumbo_h2" class="text-center">Let's get started - Fill out the survey</h2>
+            <h2 id="jumbo_h2" class="text-center">Please fill out the survey</h2>
             <br>
 
             <div class="text-center">
-                <a href="/"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-home"></span>  Home</button></a>
+                <a href="/"><button type="button" class="btn btn-lg btn-primary">Home</button></a>
             </div>
         </div>
         <div class="row">
@@ -37,10 +37,10 @@
                         <form role="form">
 
                         <h2>Your Info</h2>
-                        <h4>Name (Required)</h4>
+                        <h4>Name</h4>
                         <input type="text" name="" id="name" class="form-control" required >
 
-                        <h4>Link to Photo Image (Required)</h4>
+                        <h4>Link to Photo Image</h4>
                         <input type="text" name="" id="photo" class="form-control" required >
 
                         <hr>
@@ -194,50 +194,37 @@
     </div>
 
     <script src="https://use.fontawesome.com/0bf9ac1b8c.js"></script>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var currentURL = window.location.origin;
+        // Submit logic
+        $("#submit").on("click", function(){
+            if( ($('#name').val().trim() !== "") && ($('#photo').val().trim() !== "") ) {
+            // User's data in object
+                var userData = {
+                    name: $("#name").val(),
+                    photo: $("#photo").val(),
+                    scores: [ $("#question1").val(), 
+                    $("#question2").val(), 
+                    $("#question3").val(), 
+                    $("#question4").val(), 
+                    $("#question5").val(), 
+                    $("#question6").val(), 
+                    $("#question7").val(), 
+                    $("#question8").val(), 
+                    $("#question9").val(), 
+                    $("#question10").val(), ]
+                }
+            }
+        });
+            // modal logic
+            $('#closeModal').click(function() {
+                $.get('/',function(req,res){
+                    location.replace(res);
+                })
+            });
+        </script>
 
-    <!-- jQuery Reference -->
-   <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-
-   <!-- Latest compiled and minified JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-// Grab the URL of the website
-var currentURL = window.location.origin;
-// Capture the form inputs
-$("#submit").on("click", function(){
- //event.preventDefault();
-   if( ($('#name').val().trim() !== "") && ($('#photo').val().trim() !== "") ) {
-       // Create an object for the user's data
-       var userData = {
-           name: $("#name").val(),
-           photo: $("#photo").val(),
-           scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
-       }
-       // AJAX post the data to the friends API.
-       $.post(currentURL + "/api/friends", userData, function(data){
-         // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-         $("#friendName").text(data.name);
-         $('#friendImg').attr("src", data.photo);
-         // Show the modal with the best match
-         $("#resultsModal").modal('toggle');
-         // clear the input fields in the form
-         $("#name").val("");
-         $("#photo").val("");
-       });
-   } else {
-       $(".modal-title").text("Missing required information");
-       $(".modal-body").html("<h3>Please complete the form before submitting</h3>");
-       $("#resultsModal").modal('toggle');
-   }
-   return false;
-});
-// modal logic
-$('#closeModal').click(function() {
-   $.get('/',function(req,res){
-   location.replace(res);
-   })
-});
-</script>
-
-</body>
+    </body>
 </html>
