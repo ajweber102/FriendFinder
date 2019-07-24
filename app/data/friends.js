@@ -1,7 +1,7 @@
 var friendsArr [
     {
         "name": "Bob McBobface",
-        "photo": "C",
+        "photo": "https://cdn10.bigcommerce.com/s-npe4l/products/1157/images/1335/B-MZ-SMSHD---HIGH__85441.1477602947.1280.1280.jpg?c=2",
         "scores": ["4","5","5","3","2","5","4","3","3","1"]
     },
     {
@@ -26,7 +26,7 @@ var friendsArr [
     },
     {
         "name": "Roe Jogan",
-        "photo": "https://upload.wikimedia.org/wikipedia/en/5/55/Pajama_Sam.png",
+        "photo": "https://cdn10.bigcommerce.com/s-npe4l/products/1157/images/1335/B-MZ-SMSHD---HIGH__85441.1477602947.1280.1280.jpg?c=2",
         "scores": ["3","3","3","3","1","2","3","4","5","5"]
     },
     {
