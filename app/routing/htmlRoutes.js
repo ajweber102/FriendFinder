@@ -39,4 +39,12 @@ app.post('/api/friends', function (req, res) {
         matchDifference = totalDifference;
       }
     }
+    // Storing the best match
+    bestMatch = friends[matchIndex];
+
+    // Put new friend into existing log array
+    friends.push(yourFriend);
+
+    // Returning the best match
+    res.json(bestMatch);
 });
